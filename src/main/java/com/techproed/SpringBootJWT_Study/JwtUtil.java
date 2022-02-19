@@ -26,7 +26,7 @@ public class JwtUtil {// bir depo gibi sik kullanilan method'larin saklandigi cl
     }
 
     //Username token'den cekme (token match olamalı)
-    public String extractUserName(String token) {//token parametre alıp token'daki  username return ediyor
+    public String extractUsername(String token) {//token parametre alıp token'daki  username return ediyor
         return extractClaim(token, Claims::getSubject);// Claims::getSubject-->method token parametrden username alıyor
     }
 
@@ -54,7 +54,7 @@ public class JwtUtil {// bir depo gibi sik kullanilan method'larin saklandigi cl
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {//App create ettiği token ile client'den gelen token  oney controlu
-        final String username = extractUserName(token);
+        final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
